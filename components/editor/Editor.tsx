@@ -9,7 +9,7 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { FloatingComposer, FloatingThreads, liveblocksConfig, LiveblocksPlugin, useEditorStatus } from "@liveblocks/react-lexical";
 import Loader from "../Loader";
@@ -17,6 +17,7 @@ import FloatingToolbarPlugin from "./plugins/FloatingToolbarPlugin";
 import { useThreads } from "@liveblocks/react";
 import Comments from "../ui/Comments";
 import { DeleteModal } from "../ui/DeleteModal";
+import { ThreadData } from "@liveblocks/node";
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -77,7 +78,7 @@ export function Editor({
 
           <LiveblocksPlugin>
             <FloatingComposer className="w-[350px]" />
-            <FloatingThreads threads={threads} />
+            <FloatingThreads threads={threads || []}  />
             <Comments />
           </LiveblocksPlugin>
         </div>
